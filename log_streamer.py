@@ -2,10 +2,11 @@ import time
 import subprocess
 import requests
 import re
+import os
 from collections import deque
 
-# 🚨 <딥러닝_PC_IP_주소> 부분을 실제 딥러닝 PC의 IP로 변경하세요!
-TARGET_DL_PC_URL = "http://<탐지서버_IP>:5000/predict"
+# 탐지 서버 주소는 환경변수 DL_SERVER_URL 로 넣습니다 (예: http://<탐지서버_IP>:5000/predict)
+TARGET_DL_PC_URL = os.environ.get("DL_SERVER_URL", "http://127.0.0.1:5000/predict")
 LOG_FILE = "/var/log/apache2/access.log"
 
 window_buffer = deque(maxlen=6)
